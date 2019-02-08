@@ -118,7 +118,7 @@ type Stats struct {
 	TotMemorySegmentsAtRoot uint64
 }
 
-// atomically populates the returned map
+// ToMap; atomically populates the returned map
 func (s *Stats) ToMap() map[string]interface{} {
 	m := map[string]interface{}{}
 	sve := reflect.ValueOf(s).Elem()

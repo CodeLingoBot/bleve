@@ -53,7 +53,7 @@ func init() {
 	registry.RegisterCharFilter(Name, AsciiFoldingFilterConstructor)
 }
 
-// Converts characters above ASCII to their ASCII equivalents.
+// foldToASCII converts characters above ASCII to their ASCII equivalents.
 // For example, accents are removed from accented characters.
 func foldToASCII(input []rune, inputPos int, output []rune, outputPos int, length int) []rune {
 	end := inputPos + length

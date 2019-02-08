@@ -21,7 +21,7 @@ import (
 	"github.com/RoaringBitmap/roaring"
 )
 
-// writes out the length of the roaring bitmap in bytes as varint
+// writeRoaringWithLen writes out the length of the roaring bitmap in bytes as varint
 // then writes out the roaring bitmap itself
 func writeRoaringWithLen(r *roaring.Bitmap, w io.Writer,
 	reuseBufVarint []byte) (int, error) {

@@ -93,7 +93,7 @@ func init() {
 	registry.RegisterTokenFilter(Name, NgramFilterConstructor)
 }
 
-// Expects either an int or a flaot64 value
+// convertToInt expects either an int or a flaot64 value
 func convertToInt(val interface{}) (int, error) {
 	var intVal int
 	var floatVal float64

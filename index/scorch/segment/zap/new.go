@@ -288,7 +288,7 @@ func (s *interim) getOrDefineField(fieldName string) int {
 	return int(fieldIDPlus1 - 1)
 }
 
-// fill Dicts and DictKeys from analysis results
+// prepareDicts; fill Dicts and DictKeys from analysis results
 func (s *interim) prepareDicts() {
 	var pidNext int
 
@@ -802,7 +802,7 @@ func encodeFieldType(f document.Field) byte {
 	return fieldType
 }
 
-// returns the total # of bytes needed to encode the given uint64's
+// totalUvarintBytes returns the total # of bytes needed to encode the given uint64's
 // into binary.PutUVarint() encoding
 func totalUvarintBytes(a, b, c, d, e uint64, more []uint64) (n int) {
 	n = numUvarintBytes(a)
@@ -816,7 +816,7 @@ func totalUvarintBytes(a, b, c, d, e uint64, more []uint64) (n int) {
 	return n
 }
 
-// returns # of bytes needed to encode x in binary.PutUvarint() encoding
+// numUvarintBytes returns # of bytes needed to encode x in binary.PutUvarint() encoding
 func numUvarintBytes(x uint64) (n int) {
 	for x >= 0x80 {
 		x >>= 7

@@ -1137,7 +1137,7 @@ func TestIndexAliasMultipleLayer(t *testing.T) {
 	}
 }
 
-// TestMultiSearchNoError
+// TestMultiSearchCustomSort checks a case when 
 func TestMultiSearchCustomSort(t *testing.T) {
 	ei1 := &stubIndex{err: nil, searchResult: &SearchResult{
 		Status: &SearchStatus{

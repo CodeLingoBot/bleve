@@ -21,7 +21,7 @@ import (
 	"github.com/blevesearch/bleve/analysis"
 )
 
-// the following tests come from the lucene
+// TestUnicodeNormalization; the following tests come from the lucene
 // test cases for CJK width filter
 // which is our basis for using this
 // as a substitute for that

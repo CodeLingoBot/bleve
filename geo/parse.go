@@ -146,7 +146,7 @@ func ExtractGeoPoint(thing interface{}) (lon, lat float64, success bool) {
 	return lon, lat, foundLon && foundLat
 }
 
-// extract numeric value (if possible) and returns a float64
+// extractNumericVal; numeric value (if possible) and returns a float64
 func extractNumericVal(v interface{}) (float64, bool) {
 	val := reflect.ValueOf(v)
 	if !val.IsValid() {

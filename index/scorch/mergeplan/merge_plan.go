@@ -39,7 +39,7 @@ type Segment interface {
 	LiveSize() int64
 }
 
-// Plan() will functionally compute a merge plan.  A segment will be
+// Plan will functionally compute a merge plan.  A segment will be
 // assigned to at most a single MergeTask in the output MergePlan.  A
 // segment not assigned to any MergeTask means the segment should
 // remain unmerged.
@@ -108,7 +108,7 @@ type MergePlanOptions struct {
 	Logger func(string)
 }
 
-// Returns the higher of the input or FloorSegmentSize.
+// RaiseToFloorSegmentSize returns the higher of the input or FloorSegmentSize.
 func (o *MergePlanOptions) RaiseToFloorSegmentSize(s int64) int64 {
 	if s > o.FloorSegmentSize {
 		return s
@@ -236,7 +236,7 @@ func plan(segmentsIn []Segment, o *MergePlanOptions) (*MergePlan, error) {
 	return rv, nil
 }
 
-// Compute the number of segments that would be needed to cover the
+// CalcBudget; Compute the number of segments that would be needed to cover the
 // totalSize, by climbing up a logarithmically growing staircase of
 // segment tiers.
 func CalcBudget(totalSize int64, firstTierSize int64, o *MergePlanOptions) (
@@ -271,7 +271,7 @@ func CalcBudget(totalSize int64, firstTierSize int64, o *MergePlanOptions) (
 	return budgetNumSegments
 }
 
-// Of note, removeSegments() keeps the ordering of the results stable.
+// removeSegments; Of note, removeSegments() keeps the ordering of the results stable.
 func removeSegments(segments []Segment, toRemove []Segment) []Segment {
 	rv := make([]Segment, 0, len(segments)-len(toRemove))
 OUTER:
@@ -286,7 +286,7 @@ OUTER:
 	return rv
 }
 
-// Smaller result score is better.
+// ScoreSegments; Smaller result score is better.
 func ScoreSegments(segments []Segment, o *MergePlanOptions) float64 {
 	var totBeforeSize int64
 	var totAfterSize int64

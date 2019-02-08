@@ -43,7 +43,7 @@ func ParseRegexp(pattern string) (a *regexp.Regexp, prefixBeg, prefixEnd []byte,
 	return re, nil, nil, nil
 }
 
-// Returns the literal prefix given the parse tree for a regexp
+// LiteralPrefix returns the literal prefix given the parse tree for a regexp
 func LiteralPrefix(s *syntax.Regexp) string {
 	// traverse the left-most branch in the parse tree as long as the
 	// node represents a concatenation

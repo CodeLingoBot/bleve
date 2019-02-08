@@ -148,7 +148,7 @@ func (s *llStore) decRef() {
 	s.m.Unlock()
 }
 
-// update() mutates this lower level store with latest data from the
+// update mutates this lower level store with latest data from the
 // given higher level moss.Snapshot and returns a new moss.Snapshot
 // that the higher level can use which represents this lower level
 // store.

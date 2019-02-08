@@ -359,7 +359,7 @@ func (r *UpsideDownCouchDocIDReader) Close() error {
 	return r.iterator.Close()
 }
 
-// move the r.only pos forward one, skipping duplicates
+// nextOnly; move the r.only pos forward one, skipping duplicates
 // return true if there is more data, or false if we got to the end of the list
 func (r *UpsideDownCouchDocIDReader) nextOnly() bool {
 

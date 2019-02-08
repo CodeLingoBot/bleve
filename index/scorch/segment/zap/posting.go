@@ -515,7 +515,7 @@ func (i *PostingsIterator) Advance(docNum uint64) (segment.Posting, error) {
 	return i.nextAtOrAfter(docNum)
 }
 
-// Next returns the next posting on the postings list, or nil at the end
+// nextAtOrAfter returns the next posting on the postings list, or nil at the end
 func (i *PostingsIterator) nextAtOrAfter(atOrAfter uint64) (segment.Posting, error) {
 	docNum, exists, err := i.nextDocNumAtOrAfter(atOrAfter)
 	if err != nil || !exists {
@@ -630,7 +630,7 @@ func (i *PostingsIterator) nextBytes() (
 	return docNum, freq, normBits, bytesFreqNorm, bytesLoc, nil
 }
 
-// nextDocNum returns the next docNum on the postings list, and also
+// nextDocNumAtOrAfter returns the next docNum on the postings list, and also
 // sets up the currChunk / loc related fields of the iterator.
 func (i *PostingsIterator) nextDocNumAtOrAfter(atOrAfter uint64) (uint64, bool, error) {
 	if i.normBits1Hit != 0 {
@@ -695,7 +695,7 @@ func (i *PostingsIterator) nextDocNumAtOrAfter(atOrAfter uint64) (uint64, bool, 
 	return uint64(n), true, nil
 }
 
-// optimization when the postings list is "clean" (e.g., no updates &
+// nextDocNumAtOrAfterClean; optimization when the postings list is "clean" (e.g., no updates &
 // no deletions) where the all bitmap is the same as the actual bitmap
 func (i *PostingsIterator) nextDocNumAtOrAfterClean(
 	atOrAfter uint64) (uint64, bool, error) {

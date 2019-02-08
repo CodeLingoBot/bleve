@@ -841,7 +841,7 @@ func (f *indexImplFieldDict) Close() error {
 	return f.indexReader.Close()
 }
 
-// helper function to remove duplicate entries from slice of strings
+// deDuplicate; helper function to remove duplicate entries from slice of strings
 func deDuplicate(fields []string) []string {
 	entries := make(map[string]struct{})
 	ret := []string{}

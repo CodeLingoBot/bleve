@@ -18,7 +18,7 @@ package bleve
 
 import "github.com/blevesearch/bleve/index/store/boltdb"
 
-// in normal environments we configure boltdb as the default storage
+// initDisk; in normal environments we configure boltdb as the default storage
 func initDisk() {
 	// default kv store
 	Config.DefaultKVStore = boltdb.Name

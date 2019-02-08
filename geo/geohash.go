@@ -70,7 +70,7 @@ func (e *encoding) encode(x uint64) string {
 // Base32Encoding with the Geohash alphabet.
 var base32encoding = newEncoding("0123456789bcdefghjkmnpqrstuvwxyz")
 
-// BoundingBox returns the region encoded by the given string geohash.
+// geoBoundingBox returns the region encoded by the given string geohash.
 func geoBoundingBox(hash string) geoBox {
 	bits := uint(5 * len(hash))
 	inthash := base32encoding.decode(hash)
@@ -109,7 +109,7 @@ func errorWithPrecision(bits uint) (latErr, lngErr float64) {
 	return
 }
 
-// minDecimalPlaces returns the minimum number of decimal places such that
+// maxDecimalPower returns the minimum number of decimal places such that
 // there must exist an number with that many places within any range of width
 // r. This is intended for returning minimal precision coordinates inside a
 // box.
@@ -118,13 +118,13 @@ func maxDecimalPower(r float64) float64 {
 	return math.Pow10(m)
 }
 
-// Encode the position of x within the range -r to +r as a 32-bit integer.
+// encodeRange; the position of x within the range -r to +r as a 32-bit integer.
 func encodeRange(x, r float64) uint32 {
 	p := (x + r) / (2 * r)
 	return uint32(p * exp232)
 }
 
-// Decode the 32-bit range encoding X back to a value in the range -r to +r.
+// decodeRange; the 32-bit range encoding X back to a value in the range -r to +r.
 func decodeRange(X uint32, r float64) float64 {
 	p := float64(X) / exp232
 	x := 2*r*p - r
@@ -149,7 +149,7 @@ func deinterleave(X uint64) (uint32, uint32) {
 	return squash(X), squash(X >> 1)
 }
 
-// BoundingBoxIntWithPrecision returns the region encoded by the integer
+// geoBoundingBoxIntWithPrecision returns the region encoded by the integer
 // geohash with the specified precision.
 func geoBoundingBoxIntWithPrecision(hash uint64, bits uint) geoBox {
 	fullHash := hash << (64 - bits)
@@ -167,7 +167,7 @@ func geoBoundingBoxIntWithPrecision(hash uint64, bits uint) geoBox {
 
 // ----------------------------------------------------------------------
 
-// Decode the string geohash to a (lat, lng) point.
+// GeoHashDecode; the string geohash to a (lat, lng) point.
 func GeoHashDecode(hash string) (lat, lng float64) {
 	box := geoBoundingBox(hash)
 	return box.round()

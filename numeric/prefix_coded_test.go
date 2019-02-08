@@ -71,7 +71,7 @@ var tests = []struct {
 	},
 }
 
-// these array encoding values have been verified manually
+// TestPrefixCoded checks a case when these array encoding values have been verified manually
 // against the lucene implementation
 func TestPrefixCoded(t *testing.T) {
 

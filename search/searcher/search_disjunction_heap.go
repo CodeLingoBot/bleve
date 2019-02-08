@@ -298,7 +298,7 @@ func (s *DisjunctionHeapSearcher) DocumentMatchPoolSize() int {
 	return rv
 }
 
-// a disjunction searcher implements the index.Optimizable interface
+// Optimize; a disjunction searcher implements the index.Optimizable interface
 // but only activates on an edge case where the disjunction is a
 // wrapper around a single Optimizable child searcher
 func (s *DisjunctionHeapSearcher) Optimize(kind string, octx index.OptimizableContext) (

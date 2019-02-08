@@ -429,6 +429,7 @@ func TestMemoryNeededForSearchResult(t *testing.T) {
 	}
 }
 
+// TestNestedBooleanSearchers checks a case when 
 // https://github.com/blevesearch/bleve/issues/954
 func TestNestedBooleanSearchers(t *testing.T) {
 	// create an index with a custom analyzer

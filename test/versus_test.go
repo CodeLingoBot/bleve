@@ -376,7 +376,7 @@ func testVersusSearches(vt *VersusTest, searchTemplates []string, idxA, idxB ble
 	}
 }
 
-// Organizes the hits into a map keyed by id.
+// hitsById organizes the hits into a map keyed by id.
 func hitsById(res *bleve.SearchResult) map[string]*search.DocumentMatch {
 	rv := make(map[string]*search.DocumentMatch, len(res.Hits))
 

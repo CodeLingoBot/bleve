@@ -77,7 +77,7 @@ func (p *Parser) Push(sym rune, peek *rune) {
 	}
 }
 
-// Note. States have to have different starting symbols.
+// NewState; Note. States have to have different starting symbols.
 func (p *Parser) NewState(sym rune) State {
 	var found State
 

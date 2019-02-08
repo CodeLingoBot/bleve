@@ -274,7 +274,7 @@ type segmentMerge struct {
 	notify        chan *IndexSnapshot
 }
 
-// perform a merging of the given SegmentBase instances into a new,
+// mergeSegmentBases; perform a merging of the given SegmentBase instances into a new,
 // persisted segment, and synchronously introduce that new segment
 // into the root
 func (s *Scorch) mergeSegmentBases(snapshot *IndexSnapshot,

@@ -764,7 +764,7 @@ func (s *Scorch) removeOldData() {
 // rollback'ability.
 var NumSnapshotsToKeep = 1
 
-// Removes enough snapshots from the rootBolt so that the
+// removeOldBoltSnapshots removes enough snapshots from the rootBolt so that the
 // s.eligibleForRemoval stays under the NumSnapshotsToKeep policy.
 func (s *Scorch) removeOldBoltSnapshots() (numRemoved int, err error) {
 	persistedEpochs, err := s.RootBoltSnapshotEpochs()
@@ -858,7 +858,7 @@ func (s *Scorch) maxSegmentIDOnDisk() (uint64, error) {
 	return rv, err
 }
 
-// Removes any *.zap files which aren't listed in the rootBolt.
+// removeOldZapFiles removes any *.zap files which aren't listed in the rootBolt.
 func (s *Scorch) removeOldZapFiles() error {
 	liveFileNames, err := s.loadZapFileNames()
 	if err != nil {
@@ -909,7 +909,7 @@ func (s *Scorch) RootBoltSnapshotEpochs() ([]uint64, error) {
 	return rv, err
 }
 
-// Returns the *.zap file names that are listed in the rootBolt.
+// loadZapFileNames returns the *.zap file names that are listed in the rootBolt.
 func (s *Scorch) loadZapFileNames() (map[string]struct{}, error) {
 	rv := map[string]struct{}{}
 	err := s.rootBolt.View(func(tx *bolt.Tx) error {
